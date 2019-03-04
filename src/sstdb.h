@@ -13,6 +13,9 @@ PROG   : SSTable_DataBase_H
 
 #define DATA_PAIR(x, y) std::pair<std::string, std::string>(x, y)
 
+#define FILE_LENGTH 40000
+#define 
+
 class SSTable_DB
 {
 public:

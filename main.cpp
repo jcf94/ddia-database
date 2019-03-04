@@ -13,23 +13,24 @@ int main()
 {
     SSTable_DB sstb;
 
-    sstb.insert("aa", "bbbb");
-    sstb.insert("bb", "sdfsdfsd");
-    sstb.insert("cc", "ggggggg");
+    // sstb.insert("aa", "bbbb");
+    // sstb.insert("bb", "sdfsdfsd");
+    // sstb.insert("cc", "ggggggg");
 
-    sstb.query("bb");
-    sstb.query("aa");
-    sstb.query("cc");
+    // sstb.query("bb");
+    // sstb.query("aa");
+    // sstb.query("cc");
 
-    sstb.insert("bb", "ccccccccc");
-    sstb.query("bb");
-    sstb.query("dd");
+    // sstb.insert("bb", "ccccccccc");
+    // sstb.query("bb");
+    // sstb.query("dd");
 
-    sstb.drop("cc");
-    sstb.query("cc");
-    sstb.drop("dd");
+    // sstb.drop("cc");
+    // sstb.query("cc");
+    // sstb.drop("dd");
 
-    sstb.save();
+    // sstb.save();
+    sstb.load();
 
     return 0;
 }

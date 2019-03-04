@@ -66,6 +66,20 @@ int SSTable_DB::drop(std::string key)
 
 void SSTable_DB::load()
 {
+    char name[20];
+    int index = 0;
+    sprintf(name, "db_data/datafile_%03d", index);
+    
+    while (FILE *file = fopen(name, "r"))
+    {
+        _db_file_list.push(std::string(name));
+        fclose(file);
+        index++;
+        sprintf(name, "db_data/datafile_%03d", index);
+    }
+
+    log_ok(_db_file_list.size());
+
     
 }
 
