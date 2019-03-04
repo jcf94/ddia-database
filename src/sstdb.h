@@ -10,6 +10,8 @@ PROG   : SSTable_DataBase_H
 #include <string>
 #include <map>
 
+#define DATA_PAIR(x, y) std::pair<std::string, std::string>(x, y)
+
 class SSTable_DB
 {
 public:

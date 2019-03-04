@@ -17,7 +17,11 @@ int main()
     sstb->insert("bb", "sdfsdfsd");
     sstb->insert("cc", "ggggggg");
 
-    cout << sstb->get("bb");
+    cout << sstb->get("bb") << endl;
+    cout << sstb->get("aa") << endl;
+
+    sstb->insert("bb", "ccccccccc");
+    cout << sstb->get("bb") << endl;
 
     return 0;
 }

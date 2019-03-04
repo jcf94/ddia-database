@@ -4,10 +4,10 @@
 # PROG : SSTable_DataBase_Makefile
 # ***********************************************
 
-CC = g++
+CC = g++ -std=c++14
 CFLAGS +=
 
-LD = g++
+LD = g++ -std=c++14
 LDFLAGS +=
 
 NAME = $(wildcard *.cpp)
@@ -23,7 +23,7 @@ release: CFLAGS += -O3
 release: LDFLAGS += -O3
 release: all
 
-debug: CFLAGS += -g3
+debug: CFLAGS += -g3 -DDEV_MODE
 debug: LDFLAGS += -g3
 debug: all
 
