@@ -9,12 +9,18 @@ PROG   : SSTable_DataBase_H
 
 #include <string>
 #include <map>
-#include <queue>
-
-#define DATA_PAIR(x, y) std::pair<std::string, std::string>(x, y)
+#include <vector>
 
 #define FILE_LENGTH 40000
-#define 
+#define DEFAULT_TABLE_LENGTH 60000
+
+struct table_node
+{
+    std::string value;
+    int file_no, offset;
+};
+
+#define DATA_PAIR(a, b, c, d) std::pair<std::string, table_node>(a, table_node{b, c, d})
 
 class SSTable_DB
 {
@@ -26,13 +32,13 @@ public:
     int query(std::string key);
     int drop(std::string key);
 
-    void load();
     void save();
 
 private:
+    void load();
 
-    std::map<std::string, std::string> _table;
-    std::queue<std::string> _db_file_list;
+    std::map<std::string, table_node> _table;
+    std::vector<std::string> _db_file_list;
 };
 
 #endif // !SSTABLE_DATABASE_H

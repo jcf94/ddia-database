@@ -67,6 +67,7 @@ int main()
         char name[20];
         sprintf(name, "datafile_00%d", i);
         freopen(name, "w", stdout);
+        printf("40000\n");
         for (int j=0;j<40000;j++)
         {
             node temp = q.front();

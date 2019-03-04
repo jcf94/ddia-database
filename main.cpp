@@ -30,7 +30,10 @@ int main()
     // sstb.drop("dd");
 
     // sstb.save();
-    sstb.load();
+
+    sstb.query("UuJVm");
+    sstb.query("kWtRu");
+    sstb.query("kWuWK");
 
     return 0;
 }
