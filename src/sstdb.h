@@ -19,7 +19,7 @@ public:
     ~SSTable_DB();
 
     void insert(std::string key, std::string value);
-    std::string get(std::string key);
+    void get(std::string key);
 
 private:
 

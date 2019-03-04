@@ -25,16 +25,21 @@ void SSTable_DB::insert(std::string key, std::string value)
     {
         _table.insert(DATA_PAIR(key, value));
         log_info("New Item Insert");
-    }
-    else
+    } else
     {
         result->second = value;
         log_info(make_string("Value for %s changed", key.c_str()));
     }
 }
 
-std::string SSTable_DB::get(std::string key)
+void SSTable_DB::get(std::string key)
 {
     auto result = _table.find(key);
-    return result->second;
+    if (result == _table.end())
+    {
+        log_error("Key not found");
+    } else
+    {
+        std::cout << result->second << std::endl;
+    }
 }
