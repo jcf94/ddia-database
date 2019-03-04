@@ -11,18 +11,25 @@ using namespace std;
 
 int main()
 {
-    auto sstb = new SSTable_DB();
+    SSTable_DB sstb;
 
-    sstb->insert("aa", "bbbb");
-    sstb->insert("bb", "sdfsdfsd");
-    sstb->insert("cc", "ggggggg");
+    sstb.insert("aa", "bbbb");
+    sstb.insert("bb", "sdfsdfsd");
+    sstb.insert("cc", "ggggggg");
 
-    sstb->get("bb");
-    sstb->get("aa");
+    sstb.query("bb");
+    sstb.query("aa");
+    sstb.query("cc");
 
-    sstb->insert("bb", "ccccccccc");
-    sstb->get("bb");
-    sstb->get("dd");
+    sstb.insert("bb", "ccccccccc");
+    sstb.query("bb");
+    sstb.query("dd");
+
+    sstb.drop("cc");
+    sstb.query("cc");
+    sstb.drop("dd");
+
+    sstb.save();
 
     return 0;
 }
