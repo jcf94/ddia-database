@@ -31,9 +31,30 @@ int main()
 
     // sstb.save();
 
-    sstb.query("UuJVm");
-    sstb.query("kWtRu");
-    sstb.query("kWuWK");
+    // sstb.query("UuJVm");
+    // sstb.query("kWtRu");
+    // sstb.query("kWuWK");
+    char s1[10], s2[200], cmd;
+    while (1)
+    {
+        scanf("%c", &cmd);
+        getchar();
+        switch (cmd)
+        {
+            case 'q':
+                scanf("%s", &s1);
+                sstb.query(s1);
+                break;
+            case 'c':
+                return 0;
+            default:
+                printf("Usage:\n");
+                printf("\tq xxx: query\n");
+                printf("\tc: close");
+                break;
+        }
+        getchar();
+    }
 
     return 0;
 }

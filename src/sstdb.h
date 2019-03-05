@@ -35,7 +35,8 @@ public:
     void save();
 
 private:
-    void load();
+    void load_dbdata_from_disk();
+    int query_in_file(std::string key, int l_file_no, int l_offset, int u_file_no, int u_offset);
 
     std::map<std::string, table_node> _table;
     std::vector<std::string> _db_file_list;
