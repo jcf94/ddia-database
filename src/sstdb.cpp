@@ -21,24 +21,24 @@ SSTable_DB::~SSTable_DB()
 }
 
 int SSTable_DB::insert(std::string key, std::string value)
-// To be fixed
 {
     auto result = _table.find(key);
     if (result == _table.end())
     {
-        _table.insert(DATA_PAIR(key, value, 0, 0));
+        auto lower = _table.upper_bound(key);
+        lower--;
+        _table.insert(DATA_PAIR(key, value, lower->second.file_no, lower->second.offset));
         log_info("New Item Insert");
         return 0;
     } else
     {
-        result->second = table_node{value, 0, 0};
+        result->second.value = value;
         log_info(make_string("Value for %s changed", key.c_str()));
         return -1;
     }
 }
 
 int SSTable_DB::query(std::string key)
-// To be fixed
 {
     auto result = _table.find(key);
     if (result == _table.end())

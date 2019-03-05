@@ -45,11 +45,17 @@ int main()
                 scanf("%s", &s1);
                 sstb.query(s1);
                 break;
+            case 'i':
+                scanf("%s", &s1);
+                scanf("%s", &s2);
+                sstb.insert(s1, s2);
+                break;
             case 'c':
                 return 0;
             default:
                 printf("Usage:\n");
                 printf("\tq xxx: query\n");
+                printf("\ti xxx yyy: insert\n");
                 printf("\tc: close");
                 break;
         }
