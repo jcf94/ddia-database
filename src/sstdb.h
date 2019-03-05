@@ -14,6 +14,7 @@ PROG   : SSTable_DataBase_H
 
 #define FILE_LENGTH 40000
 #define DEFAULT_TABLE_LENGTH 60000
+#define FILE_NO_INF 65536
 
 struct table_node
 {

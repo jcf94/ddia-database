@@ -45,11 +45,21 @@ int SSTable_DB::query(std::string key)
     {
         auto upper = _table.upper_bound(key);
         auto lower = upper;
-        lower--;
+        if (lower != _table.begin()) lower--;
+        int u_file_no, u_offset;
+        if (upper != _table.end())
+        {
+            u_file_no = upper->second.file_no;
+            u_offset = upper->second.offset;
+        } else
+        {
+            u_file_no = FILE_NO_INF;
+            u_offset = 0;
+        }
         
         if (query_in_file(key,
             lower->second.file_no, lower->second.offset,
-            upper->second.file_no, upper->second.offset))
+            u_file_no, u_offset))
         {
             log_error("Key not found");
             return -1;
@@ -259,7 +269,6 @@ int SSTable_DB::query_in_file(std::string key, int l_file_no, int l_offset, int 
         fseek(file, l_offset, SEEK_SET);
         while (fscanf(file, "%s", s1) != EOF)
         {
-            fscanf(file, "%s", s1);
             fscanf(file, "%s", s2);
             if (key.compare(s1) == 0)
             {
@@ -269,19 +278,23 @@ int SSTable_DB::query_in_file(std::string key, int l_file_no, int l_offset, int 
             }
         }
         fclose(file);
-        file = fopen(_db_file_list[u_file_no].c_str(), "r");
-        while (ftell(file) < u_offset)
+
+        if (u_file_no != FILE_NO_INF)
         {
-            fscanf(file, "%s", s1);
-            fscanf(file, "%s", s2);
-            if (key.compare(s1) == 0)
+            file = fopen(_db_file_list[u_file_no].c_str(), "r");
+            while (ftell(file) < u_offset)
             {
-                std::cout << s2 << std::endl;
-                fclose(file);
-                return 0;
+                fscanf(file, "%s", s1);
+                fscanf(file, "%s", s2);
+                if (key.compare(s1) == 0)
+                {
+                    std::cout << s2 << std::endl;
+                    fclose(file);
+                    return 0;
+                }
             }
+            fclose(file);
         }
-        fclose(file);
     }
     return -1;
 }
